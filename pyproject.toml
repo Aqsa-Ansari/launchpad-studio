@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "launchpad"
+version = "0.1.0"
+description = "LaunchPad - an AI product-launch studio that showcases CrewAI flows, crews, handoffs, guardrails and parallelism"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+  "crewai==1.15.40",
+  "crewai-tools==1.15.40",
+  "streamlit>=1.40",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+launchpad = "launchpad.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]
