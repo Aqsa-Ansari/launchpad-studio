@@ -12,6 +12,7 @@ dependencies = [
   "crewai-tools==1.15.40",
   "streamlit>=1.40",
   "python-dotenv>=1.0",
+  "tavily-python>=0.8.5",
 ]
 
 [project.optional-dependencies]

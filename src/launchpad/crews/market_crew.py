@@ -16,7 +16,7 @@ from crewai import Agent, Crew, Process, Task, TaskOutput
 from crewai.tasks.conditional_task import ConditionalTask
 from crewai.tasks.hallucination_guardrail import HallucinationGuardrail
 
-from launchpad.config import is_mock, make_llm, verbose
+from launchpad.config import env_bool, is_mock, make_llm, verbose
 from launchpad.crews.common import lifecycle
 from launchpad.events import emit
 from launchpad.guardrails import STRING_RULES, cite_sources_and_length, make_grounding_guardrail
@@ -155,7 +155,7 @@ def build_market_crew() -> Crew:
         agents=[market_researcher, competitor_analyst, voice_analyst, synthesizer],
         tasks=[market_scan, voice_scan, competitor_scan, deep_dive, synthesis],
         process=Process.sequential,
-        planning=not is_mock(),
+        planning=env_bool("LAUNCHPAD_PLANNING"),
         planning_llm=worker,
         verbose=verbose(),
         before_kickoff_callbacks=[before],
